@@ -80,6 +80,7 @@ namespace ScottPlotTests.Axis
             // Demonstrates bug described in https://github.com/ScottPlot/ScottPlot/pull/1813
 
             var plt = new ScottPlot.Plot(800, 600);
+            plt.SetCulture(null, ",");
             var sig = plt.AddSignal(ScottPlot.DataGen.Sin(1000));
 
             // repeat this multiple times to ensure changes can be undone/redone
@@ -91,6 +92,7 @@ namespace ScottPlotTests.Axis
                 var culture = plt.XAxis.AxisTicks.TickCollection.Culture;
                 var expectedLabel = 0d.ToString("F4", culture);
                 Assert.AreEqual(expectedLabel, plt.XAxis.GetTicks().First().Label);
+                Assert.AreEqual("0.0000", plt.XAxis.GetTicks().First().Label);
 
                 // custom DATETIME format string
                 plt.XAxis.TickLabelFormat("HH:mm:ss", dateTimeFormat: true);
