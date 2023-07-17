@@ -1,4 +1,7 @@
-﻿using System.IO;
+﻿using System;
+using System.Diagnostics;
+using System.Drawing;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -17,7 +20,7 @@ namespace ScottPlot.WPF
         private const string PART_SKElement = "PART_SKElement";
 
         private SkiaSharp.Views.WPF.SKGLElement? SKElement;
-        public Plot Plot { get; } = new();
+        public Plot Plot { get; }// = new();
 
         public Interaction Interaction { get; private set; }
 
@@ -25,6 +28,7 @@ namespace ScottPlot.WPF
 
         static WpfPlot()
         {
+            Debug.WriteLine("Type of WPF Plot: " + typeof(WpfPlot).ToString());
             DefaultStyleKeyProperty.OverrideMetadata(
                 forType: typeof(WpfPlot),
                 typeMetadata: new FrameworkPropertyMetadata(typeof(WpfPlot)));
@@ -32,6 +36,22 @@ namespace ScottPlot.WPF
 
         public WpfPlot()
         {
+
+            const int DEFAULT_DPI = 96;
+            var scaleFactor = 1f;
+
+            using (Graphics gfx = Graphics.FromHwnd(IntPtr.Zero))
+            {
+                scaleFactor = gfx.DpiX / DEFAULT_DPI;
+            }
+
+            Plot = new()
+            {
+                ScaleFactor = scaleFactor//scaleFactor
+            };
+
+            //Plot = new();
+
             Interaction = new(this)
             {
                 ContextMenuItems = GetDefaultContextMenuItems()

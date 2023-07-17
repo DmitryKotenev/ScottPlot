@@ -80,7 +80,10 @@ public class FormsPlot : UserControl, IPlotControl
     {
         using Graphics gfx = CreateGraphics();
         const int DEFAULT_DPI = 96;
-        float scaleFactor = gfx.DpiX / DEFAULT_DPI;
+        //float scaleFactor = gfx.DpiX / DEFAULT_DPI; //original
+        //float scaleFactor = 3; //delete
+        float scaleFactor = (gfx.DpiX / DEFAULT_DPI); //delete
+        Debug.WriteLine("Scale factor = " + scaleFactor.ToString()); //delete
 
         Plot newPlot = new()
         {

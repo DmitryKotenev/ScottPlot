@@ -1,4 +1,6 @@
-﻿namespace Sandbox.WinForms;
+﻿using System.Diagnostics;
+
+namespace Sandbox.WinForms;
 
 static class Program
 {
