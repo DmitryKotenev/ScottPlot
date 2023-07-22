@@ -49,8 +49,6 @@ public class RenderManager
 
     public void Render(SKCanvas canvas, int width, int height)
     {
-        canvas.Scale(Plot.ScaleFactor);
-
         List<(string, TimeSpan)> actionTimes = new();
 
         PixelSize figureSize = new(width, height);
@@ -71,6 +69,7 @@ public class RenderManager
 
     public void Render(SKSurface surface)
     {
+        surface.Canvas.Scale(Plot.ScaleFactor);
         Render(surface.Canvas, (int)surface.Canvas.LocalClipBounds.Width, (int)surface.Canvas.LocalClipBounds.Height);
     }
 }
