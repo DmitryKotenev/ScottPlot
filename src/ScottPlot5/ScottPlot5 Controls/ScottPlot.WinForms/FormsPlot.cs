@@ -123,19 +123,19 @@ public class FormsPlot : UserControl, IPlotControl
 
     private void SKElement_MouseDown(object? sender, MouseEventArgs e)
     {
-        Interaction.MouseDown(e.Pixel(), e.Button());
+        Interaction.MouseDown(e.Pixel(Plot.ScaleFactor), e.Button());
         base.OnMouseDown(e);
     }
 
     private void SKElement_MouseUp(object? sender, MouseEventArgs e)
     {
-        Interaction.MouseUp(e.Pixel(), e.Button());
+        Interaction.MouseUp(e.Pixel(Plot.ScaleFactor), e.Button());
         base.OnMouseUp(e);
     }
 
     private void SKElement_MouseMove(object? sender, MouseEventArgs e)
     {
-        Interaction.OnMouseMove(e.Pixel());
+        Interaction.OnMouseMove(e.Pixel(Plot.ScaleFactor));
         base.OnMouseMove(e);
     }
 
@@ -147,7 +147,7 @@ public class FormsPlot : UserControl, IPlotControl
 
     private void SKElement_MouseWheel(object? sender, MouseEventArgs e)
     {
-        Interaction.MouseWheelVertical(e.Pixel(), e.Delta);
+        Interaction.MouseWheelVertical(e.Pixel(Plot.ScaleFactor), e.Delta);
         base.OnMouseWheel(e);
     }
 

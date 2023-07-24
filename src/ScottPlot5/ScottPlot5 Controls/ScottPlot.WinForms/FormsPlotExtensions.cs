@@ -7,9 +7,9 @@ namespace ScottPlot.WinForms;
 
 internal static class FormsPlotExtensions
 {
-    internal static Pixel Pixel(this MouseEventArgs e)
+    internal static Pixel Pixel(this MouseEventArgs e, float scaleFactor = 1)
     {
-        return new Pixel(e.X, e.Y);
+        return new Pixel(e.X / scaleFactor, e.Y / scaleFactor);
     }
 
     internal static Control.MouseButton Button(this MouseEventArgs e)
